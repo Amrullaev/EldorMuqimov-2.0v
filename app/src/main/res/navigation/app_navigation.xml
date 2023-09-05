@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.eldormuqimov20.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.eldormuqimov20.fragments.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.eldormuqimov20.fragments.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.eldormuqimov20.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_themeFragment"
+            app:destination="@id/themeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/themeFragment"
+        android:name="com.example.eldormuqimov20.fragments.ThemeFragment"
+        android:label="fragment_theme"
+        tools:layout="@layout/fragment_theme" />
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="com.example.eldormuqimov20.fragments.MusicFragment"
+        android:label="fragment_music"
+        tools:layout="@layout/fragment_music" />
+</navigation>
