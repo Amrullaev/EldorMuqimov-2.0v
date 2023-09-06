@@ -1,6 +1,9 @@
 package com.example.eldormuqimov20.fragments
 
+import android.content.res.Resources
+import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
+import android.media.MediaPlayer.OnPreparedListener
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -14,7 +17,7 @@ import com.example.eldormuqimov20.databinding.FragmentMusicBinding
 import com.example.eldormuqimov20.domain.MusicData
 import com.example.eldormuqimov20.responseUtils.Constanta
 
-class MusicFragment : Fragment() {
+class MusicFragment : Fragment(), OnPreparedListener {
     private var _binding: FragmentMusicBinding? = null
     private val binding get() = _binding!!
     private lateinit var runnable: Runnable
@@ -52,7 +55,7 @@ class MusicFragment : Fragment() {
                 mediaPlayer.start()
                 binding.playBtn.setImageResource(R.drawable.pause_142)
             } else {
-                mediaPlayer.stop()
+                mediaPlayer.pause()
                 binding.playBtn.setImageResource(R.drawable.play_btn)
             }
         }
@@ -85,6 +88,7 @@ class MusicFragment : Fragment() {
 
         mediaPlayer.setOnCompletionListener {
             binding.seekbar.progress = 0
+
             if (music < songs.size - 1) {
                 music += 1
             } else {
@@ -143,5 +147,21 @@ class MusicFragment : Fragment() {
         return binding.root
     }
 
+    override fun onPrepared(mp: MediaPlayer?) {
+        mp?.start()
+    }
 
+
+
+
+//    private fun releaseMP() {
+//        if (mediaPlayer != null) {
+//            try {
+//                mediaPlayer.release()
+//                mediaPlayer = null
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//        }
+//    }
 }

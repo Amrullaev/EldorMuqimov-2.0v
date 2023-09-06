@@ -1,5 +1,8 @@
 package com.example.eldormuqimov20.fragments
 
+import android.content.res.Resources
+import android.media.MediaMetadataRetriever
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,20 +28,22 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
 
 
-
         binding.settingsBtn.setOnClickListener {
             findNavController().navigate(R.id.settingsFragment)
         }
 
-        val musicAdapter = MusicAdapter(audioLoadList(), object : MusicAdapter.OnClickListener {
-            override fun onClick(musicData: MusicData, position: Int) {
-                val bundle = Bundle()
-                bundle.putInt("audio", position)
-                bundle.putSerializable("music", musicData)
-                findNavController().navigate(R.id.musicFragment, bundle)
-            }
+        val musicAdapter = context?.let {
+            MusicAdapter(audioLoadList(), object : MusicAdapter.OnClickListener {
+                override fun onClick(musicData: MusicData, position: Int) {
+                    val bundle = Bundle()
+                    bundle.putInt("audio", position)
+                    bundle.putSerializable("music", musicData)
+                    findNavController().navigate(R.id.musicFragment, bundle)
+                }
 
-        })
+
+            }, it)
+        }
         binding.recycler.adapter = musicAdapter
         Constanta.musicList = audioLoadList()
         return binding.root
@@ -80,5 +85,6 @@ class HomeFragment : Fragment() {
 
         return list
     }
+
 
 }

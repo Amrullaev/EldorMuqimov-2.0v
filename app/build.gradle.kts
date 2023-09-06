@@ -1,11 +1,9 @@
-
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("com.google.dagger.hilt.android")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -66,8 +64,11 @@ dependencies {
     implementation("com.karumi:dexter:6.2.3")
 
     implementation("com.google.dagger:hilt-android:2.42")
-    kapt ("com.google.dagger:hilt-android-compiler:2.46.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
 
     kapt("com.google.dagger:hilt-compiler:2.42")
 
+    //lottie
+
+    implementation("com.airbnb.android:lottie:6.0.1")
 }

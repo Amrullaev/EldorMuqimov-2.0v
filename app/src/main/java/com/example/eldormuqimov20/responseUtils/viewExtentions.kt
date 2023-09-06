@@ -69,3 +69,5 @@ fun isAppInstalled(context: Context, packageName: String): Boolean {
         false
     }
 }
+
+

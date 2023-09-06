@@ -63,4 +63,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/artistTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/artistTxt" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
