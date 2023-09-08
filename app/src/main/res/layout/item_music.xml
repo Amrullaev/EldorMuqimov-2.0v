@@ -58,11 +58,29 @@
         android:id="@+id/songTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="03:00"
+        android:layout_marginEnd="32dp"
+        android:text="03"
         app:layout_constraintBottom_toBottomOf="@+id/artistTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/artistTxt" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        app:layout_constraintStart_toEndOf="@+id/songTime"
+        app:layout_constraintTop_toTopOf="@+id/songTime"
+        app:layout_constraintBottom_toBottomOf="@id/songTime"/>
+
+    <TextView
+        android:id="@+id/songtimesec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,20 +2,21 @@ package com.example.eldormuqimov20.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.AssetFileDescriptor
-import android.content.res.Resources
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eldormuqimov20.R
 import com.example.eldormuqimov20.databinding.ItemMusicBinding
 import com.example.eldormuqimov20.domain.MusicData
-import java.util.Locale
-import java.util.concurrent.TimeUnit
+import com.google.common.reflect.Reflection.getPackageName
+import kotlin.math.abs
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
+
 
 class MusicAdapter(
     private val mylist: List<MusicData>,
@@ -23,9 +24,6 @@ class MusicAdapter(
     context: Context
 ) :
     RecyclerView.Adapter<MusicAdapter.VH>() {
-
-    val resources = context.resources
-    val packageName = context.packageName
 
 
     inner class VH(var itemMusicBinding: ItemMusicBinding) :
@@ -35,41 +33,11 @@ class MusicAdapter(
             itemMusicBinding.artistTxt.text = "Eldor Muqimov"
             itemMusicBinding.songNameTxt.text = musicData.audioName
             itemMusicBinding.songImage.setImageResource(musicData.audioImage)
-
-            val rawIds = mutableListOf<Int>()
-            for (i in 1..3) { // Assuming there are 10 songs in the raw folder
-                val resourceId = resources.getIdentifier("song$i", "raw", packageName)
-                if (resourceId != 0) {
-                    rawIds.add(resourceId)
-                }
-            }
-
-            val mediaPlayer = MediaPlayer()
-            for (rawId in rawIds) {
-                mediaPlayer.reset()
-                val fileDescriptor = resources.openRawResourceFd(rawId)
-                mediaPlayer.setDataSource(
-                    fileDescriptor.fileDescriptor,
-                    fileDescriptor.startOffset,
-                    fileDescriptor.length
-                )
-                mediaPlayer.prepare()
-
-                val duration = mediaPlayer.duration // Length of the song in milliseconds
-
-                // Convert duration to minutes and seconds if needed
-                val minutes = TimeUnit.MILLISECONDS.toMinutes(duration.toLong())
-                val seconds = TimeUnit.MILLISECONDS.toSeconds(duration.toLong()) % 60
-                itemMusicBinding.songTime.text = "$minutes:$seconds"
-                Log.d("Song Length", "Song $rawId: $minutes minutes, $seconds seconds")
-
-                mediaPlayer.release()
-            }
-
+            itemMusicBinding.songTime.text = musicData.durationMin
+            itemMusicBinding.songtimesec.text = musicData.durationSec
             itemMusicBinding.root.setOnClickListener {
                 listener.onClick(musicData, position)
             }
-
         }
     }
 
@@ -87,6 +55,8 @@ class MusicAdapter(
 
     interface OnClickListener {
         fun onClick(musicData: MusicData, position: Int)
+
     }
+
 
 }

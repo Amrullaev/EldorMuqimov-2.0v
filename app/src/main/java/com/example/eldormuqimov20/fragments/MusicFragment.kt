@@ -81,6 +81,7 @@ class MusicFragment : Fragment(), OnPreparedListener {
 
         runnable = Runnable {
             binding.seekbar.progress = mediaPlayer.currentPosition
+
             handler.postDelayed(runnable, 1000)
         }
         handler.postDelayed(runnable, 1000)
@@ -154,14 +155,12 @@ class MusicFragment : Fragment(), OnPreparedListener {
 
 
 
-//    private fun releaseMP() {
-//        if (mediaPlayer != null) {
-//            try {
-//                mediaPlayer.release()
-//                mediaPlayer = null
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//        }
-//    }
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.isLooping = false
+        mediaPlayer.stop()
+        mediaPlayer.release()
+        handler.removeCallbacks(runnable)
+        _binding = null
+    }
 }

@@ -33,41 +33,6 @@ fun openInstagram(activity: Activity) {
     }
 }
 
-fun openFacebook(activity: Activity) {
-    val appFb = "fb://page/100071033274433"
-    val urlFb = "https://www.facebook.com/profile.php?id=100071033274433&mibextid=ZbWKwL"
-    try {
-        if (isAppInstalled(activity, "com.facebook.orca") || isAppInstalled(
-                activity,
-                "com.facebook.katana"
-            )
-            || isAppInstalled(activity, "com.example.facebook") || isAppInstalled(
-                activity,
-                "com.facebook.android"
-            )
-        ) {
-            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(appFb)))
-        } else {
-            activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(urlFb)))
-        }
-    } catch (e: Exception) {
-        activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(urlFb)))
-        e.printStackTrace()
-    }
-}
 
-fun openWebsite(activity: Activity) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://aksiyamix.uz/"))
-    activity.startActivity(intent)
-}
-
-fun isAppInstalled(context: Context, packageName: String): Boolean {
-    return try {
-        context.packageManager.getApplicationInfo(packageName, 0)
-        true
-    } catch (e: PackageManager.NameNotFoundException) {
-        false
-    }
-}
 
 
