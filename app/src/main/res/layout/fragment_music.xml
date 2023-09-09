@@ -53,9 +53,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="378dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
         app:cardCornerRadius="13dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,23 +74,23 @@
         android:id="@+id/songName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:text="Single name"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/songName">
 
         <TextView
             android:id="@+id/start_timeTxt"
@@ -109,7 +110,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/start_timeTxt"
             app:layout_constraintEnd_toStartOf="@+id/end_timeTxt"
             app:layout_constraintStart_toEndOf="@+id/start_timeTxt"
-            app:layout_constraintTop_toTopOf="@+id/start_timeTxt" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/end_timeTxt"
@@ -127,27 +128,31 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songName">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
 
         <ImageView
             android:id="@+id/previous_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
             android:layout_marginStart="64dp"
             android:src="@drawable/back_btn"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/play_btn"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/play_btn"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/pause_142"
             app:layout_constraintBottom_toBottomOf="@+id/previous_btn"
             app:layout_constraintEnd_toStartOf="@+id/next_btn"
             app:layout_constraintStart_toEndOf="@+id/previous_btn"
@@ -159,9 +164,11 @@
             android:layout_height="40dp"
             android:layout_marginEnd="64dp"
             android:src="@drawable/next_88"
+            app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/play_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/play_btn" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

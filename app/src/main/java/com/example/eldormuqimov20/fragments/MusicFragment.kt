@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.navigation.fragment.findNavController
 import com.example.eldormuqimov20.R
 import com.example.eldormuqimov20.databinding.FragmentMusicBinding
 import com.example.eldormuqimov20.domain.MusicData
@@ -44,6 +45,9 @@ class MusicFragment : Fragment(), OnPreparedListener {
 
         mediaPlayer = MediaPlayer.create(requireContext(), songs[music].id)
 
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
 
@@ -151,8 +155,6 @@ class MusicFragment : Fragment(), OnPreparedListener {
     override fun onPrepared(mp: MediaPlayer?) {
         mp?.start()
     }
-
-
 
 
     override fun onDestroy() {

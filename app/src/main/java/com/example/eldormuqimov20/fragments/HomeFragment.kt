@@ -1,5 +1,6 @@
 package com.example.eldormuqimov20.fragments
 
+
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.example.eldormuqimov20.responseUtils.Constanta
 
 
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -26,6 +28,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
+
 
 
         binding.settingsBtn.setOnClickListener {
