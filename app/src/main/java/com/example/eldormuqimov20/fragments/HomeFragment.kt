@@ -1,6 +1,7 @@
 package com.example.eldormuqimov20.fragments
 
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import com.example.eldormuqimov20.adapter.MusicAdapter
 import com.example.eldormuqimov20.databinding.FragmentHomeBinding
 import com.example.eldormuqimov20.domain.MusicData
 import com.example.eldormuqimov20.responseUtils.Constanta
+import com.example.eldormuqimov20.service.MyService
 
 
 class HomeFragment : Fragment() {
@@ -43,12 +45,13 @@ class HomeFragment : Fragment() {
                     bundle.putSerializable("music", musicData)
                     findNavController().navigate(R.id.musicFragment, bundle)
 
-                    if (mediaPlayer?.isPlaying == true) {
-                        mediaPlayer?.stop()
-                    }
-
-                    mediaPlayer = MediaPlayer.create(requireContext(), musicData.id)
-                    mediaPlayer?.start()
+                    requireActivity().startService(Intent(requireContext(), MyService::class.java))
+//                    if (mediaPlayer?.isPlaying == true) {
+//                        mediaPlayer?.stop()
+//                    }
+//
+//                    mediaPlayer = MediaPlayer.create(requireContext(), musicData.id)
+//                    mediaPlayer?.start()
                 }
 
 

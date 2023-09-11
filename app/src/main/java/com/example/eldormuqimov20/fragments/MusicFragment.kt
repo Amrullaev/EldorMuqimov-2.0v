@@ -154,6 +154,7 @@ class MusicFragment : Fragment(), OnPreparedListener {
 
     override fun onPrepared(mp: MediaPlayer?) {
         mp?.start()
+
     }
 
 
