@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_musicFragment"
+            app:destination="@id/musicFragment" />
 
     </fragment>
     <fragment

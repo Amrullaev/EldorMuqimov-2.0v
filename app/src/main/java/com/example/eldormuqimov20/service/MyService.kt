@@ -4,22 +4,23 @@ import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.IBinder
-import com.example.eldormuqimov20.domain.MusicData
+import com.example.eldormuqimov20.R
 
 class MyService : Service() {
-    lateinit var musicdata: MusicData
     private var mediaPlayer: MediaPlayer? = null
 
-
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
+        val rawId = intent?.extras?.getInt("resId", R.raw.dema)
 
         if (mediaPlayer?.isPlaying == true) {
             mediaPlayer?.stop()
         }
+        rawId?.let {
+            mediaPlayer = MediaPlayer.create(this, rawId)
+            mediaPlayer?.start()
+        }
 
-        mediaPlayer = MediaPlayer.create(this, musicdata.id)
-        mediaPlayer?.start()
         return START_STICKY
     }
 
