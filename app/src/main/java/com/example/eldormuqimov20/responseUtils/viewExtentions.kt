@@ -21,7 +21,7 @@ fun openTelegram(activity: Activity) {
 }
 
 fun openInstagram(activity: Activity) {
-    val uri = Uri.parse("https://www.instagram.com/uchqun_amrullaev/")
+    val uri = Uri.parse("https://www.instagram.com/eldor__muqimov/")
     val likeIng = Intent(Intent.ACTION_VIEW, uri)
     likeIng.setPackage("com.instagram.android")
     try {

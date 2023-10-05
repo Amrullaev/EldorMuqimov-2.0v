@@ -1,5 +1,7 @@
 package com.example.eldormuqimov20.fragments
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Resources
 import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
@@ -12,16 +14,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.example.eldormuqimov20.R
 import com.example.eldormuqimov20.databinding.FragmentMusicBinding
 import com.example.eldormuqimov20.domain.MusicData
 import com.example.eldormuqimov20.responseUtils.Constanta
+import com.example.eldormuqimov20.service.MyService
 
 class MusicFragment : Fragment(), OnPreparedListener {
     private var _binding: FragmentMusicBinding? = null
     private val binding get() = _binding!!
-    private lateinit var runnable: Runnable
+
     private var handler = Handler()
     private lateinit var songs: ArrayList<MusicData>
     private var mediaPlayer: MediaPlayer = MediaPlayer()
@@ -32,6 +36,8 @@ class MusicFragment : Fragment(), OnPreparedListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMusicBinding.inflate(layoutInflater)
+
+        val intent = Intent(requireContext(), MyService::class.java)
 
         songs = ArrayList()
         var music = requireArguments().getInt("audio")
@@ -56,7 +62,10 @@ class MusicFragment : Fragment(), OnPreparedListener {
 
         binding.playBtn.setOnClickListener {
             if (!mediaPlayer.isPlaying) {
+
+
                 mediaPlayer.start()
+                requireActivity().startService(intent)
                 binding.playBtn.setImageResource(R.drawable.pause_142)
             } else {
                 mediaPlayer.pause()
@@ -83,12 +92,6 @@ class MusicFragment : Fragment(), OnPreparedListener {
         })
 
 
-        runnable = Runnable {
-            binding.seekbar.progress = mediaPlayer.currentPosition
-
-            handler.postDelayed(runnable, 1000)
-        }
-        handler.postDelayed(runnable, 1000)
 
 
         mediaPlayer.setOnCompletionListener {
@@ -103,9 +106,12 @@ class MusicFragment : Fragment(), OnPreparedListener {
             binding.songName.text = songs[music].audioName
 
             try {
+                requireActivity().stopService(intent)
                 mediaPlayer.stop()
                 mediaPlayer = MediaPlayer.create(requireContext(), songs[music].id)
+                requireActivity().startService(intent)
                 mediaPlayer.start()
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -121,8 +127,10 @@ class MusicFragment : Fragment(), OnPreparedListener {
             binding.songImage.setImageResource(songs[music].audioImage)
             binding.songName.text = songs[music].audioName
             try {
+                requireActivity().stopService(intent)
                 mediaPlayer.stop()
                 mediaPlayer = MediaPlayer.create(requireContext(), songs[music].id)
+                requireActivity().startService(intent)
                 mediaPlayer.start()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -148,6 +156,13 @@ class MusicFragment : Fragment(), OnPreparedListener {
             }
         }
 
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(requireActivity(), callback)
 
         return binding.root
     }
@@ -157,11 +172,41 @@ class MusicFragment : Fragment(), OnPreparedListener {
 
     }
 
+    private val runnable = object : Runnable {
+        @SuppressLint("SetTextI18n")
+        override fun run() {
+
+            val currentPosition = mediaPlayer.currentPosition
+            Log.d("position", "run: $currentPosition")
+            binding.seekbar.progress = currentPosition
+
+            if ((currentPosition % 60000) / 1000 > 9 && currentPosition / 60000 > 9) {
+                binding.startTimeTxt.text =
+                    "${currentPosition / 60000}:${(currentPosition % 60000) / 1000}"
+            }
+            if (currentPosition / 60000 < 10) {
+                binding.startTimeTxt.text =
+                    "0${currentPosition / 60000}:${(currentPosition % 60000) / 1000}"
+            }
+            if ((currentPosition % 60000) / 1000 < 10) {
+                binding.startTimeTxt.text =
+                    "${currentPosition / 60000}:0${(currentPosition % 60000) / 1000}"
+            }
+            if ((currentPosition % 60000) / 1000 < 10 && currentPosition / 60000 < 10) {
+                binding.startTimeTxt.text =
+                    "0${currentPosition / 60000}:0${(currentPosition % 60000) / 1000}"
+            }
+            handler.postDelayed(this, 1000)
+        }
+
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.isLooping = false
-        mediaPlayer.stop()
+        mediaPlayer.pause()
+
         mediaPlayer.release()
         handler.removeCallbacks(runnable)
         _binding = null

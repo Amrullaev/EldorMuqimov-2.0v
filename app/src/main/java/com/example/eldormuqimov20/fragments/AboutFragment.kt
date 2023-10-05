@@ -8,10 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.eldormuqimov20.MainActivity
-import com.example.eldormuqimov20.R
 import com.example.eldormuqimov20.databinding.FragmentAboutBinding
-import com.example.eldormuqimov20.databinding.FragmentSettingsBinding
 import com.example.eldormuqimov20.responseUtils.openInstagram
 import com.example.eldormuqimov20.responseUtils.openTelegram
 
@@ -36,7 +33,7 @@ class AboutFragment : Fragment() {
             open("https://www.youtube.com/@eldormuqimov9341")
         }
 
-        binding.telNumber.setOnClickListener {
+        binding.callBtn.setOnClickListener {
             val phone = "+998936968890"
             val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
             startActivity(intent)

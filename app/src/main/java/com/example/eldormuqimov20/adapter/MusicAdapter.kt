@@ -8,7 +8,7 @@ import com.example.eldormuqimov20.domain.MusicData
 
 
 class MusicAdapter(
-    private val mylist: List<MusicData>,
+    private val mylist: ArrayList<MusicData>,
     private val onClick: (MusicData, Int) -> Unit
 ) :
     RecyclerView.Adapter<MusicAdapter.VH>() {

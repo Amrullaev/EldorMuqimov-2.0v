@@ -19,11 +19,6 @@
 
     </fragment>
     <fragment
-        android:id="@+id/languageFragment"
-        android:name="com.example.eldormuqimov20.fragments.LanguageFragment"
-        android:label="fragment_language"
-        tools:layout="@layout/fragment_language" />
-    <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.eldormuqimov20.fragments.AboutFragment"
         android:label="fragment_about"
@@ -34,20 +29,9 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
         <action
-            android:id="@+id/action_settingsFragment_to_themeFragment"
-            app:destination="@id/themeFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_languageFragment"
-            app:destination="@id/languageFragment" />
-        <action
             android:id="@+id/action_settingsFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/themeFragment"
-        android:name="com.example.eldormuqimov20.fragments.ThemeFragment"
-        android:label="fragment_theme"
-        tools:layout="@layout/fragment_theme" />
     <fragment
         android:id="@+id/musicFragment"
         android:name="com.example.eldormuqimov20.fragments.MusicFragment"

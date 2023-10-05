@@ -6,15 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AboutFragment">
 
-    <androidx.cardview.widget.CardView
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="64dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/eldor8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:padding="4dp"
+        android:text="@string/lorem"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/youtube_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/telegram_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/about_bg"
+        android:elevation="15dp"
+        android:gravity="center"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <ImageView
@@ -23,17 +56,21 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/telegram_2" />
-    </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.cardview.widget.CardView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/instagram_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/about_bg"
+        android:elevation="15dp"
+        android:gravity="center"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/call_btn">
 
 
         <ImageView
@@ -42,38 +79,54 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:src="@drawable/instagram_48" />
-    </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.cardview.widget.CardView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/youtube_btn"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/about_bg"
+        android:elevation="15dp"
+        android:gravity="center"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/instagram_btn"
-        app:layout_constraintStart_toEndOf="@+id/telegram_btn"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/telegram_btn">
 
 
         <ImageView
             android:id="@+id/imageView32"
             android:layout_width="40dp"
             android:layout_height="40dp"
+
             android:layout_gravity="center"
             android:src="@drawable/youtube_118" />
-    </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <TextView
-        android:id="@+id/tel_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="+998936968890"
-        android:textSize="16sp"
-        android:textColor="#007fff"
-        app:layout_constraintEnd_toStartOf="@+id/instagram_btn"
-        app:layout_constraintStart_toEndOf="@+id/telegram_btn"
-        app:layout_constraintTop_toBottomOf="@+id/youtube_btn" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/call_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="64dp"
+        android:layout_weight="1"
+        android:background="@drawable/about_bg"
+        android:elevation="15dp"
+        android:gravity="center"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/youtube_btn">
+
+
+        <ImageView
+            android:id="@+id/imageView332"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_call_24" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
